@@ -1,4 +1,4 @@
 from enum import Enum
 
 class Config(Enum):
-    pass
+    MAX_ITERATIONS = 3
