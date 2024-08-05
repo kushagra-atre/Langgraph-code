@@ -1,3 +1,4 @@
 .env
 .conda
 __pycache__
+questions.txt

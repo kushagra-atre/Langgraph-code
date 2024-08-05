@@ -9,7 +9,7 @@ class code(BaseModel):
     prefix: str = Field(description="Description of the problem and approach")
     imports: str = Field(description="Code block import statements")
     code: str = Field(description="Code block not including import statements")
-    description = "Schema for code solutions to questions about LCEL."
+    description = "CODE"
     
     
 class GraphState(TypedDict):
