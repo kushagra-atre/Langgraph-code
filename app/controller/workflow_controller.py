@@ -11,8 +11,8 @@ class CodeWorkflow:
     def __init__(self):
         self.llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
         self.llm_with_tools = self.llm.with_structured_output(code, include_raw=False)
-        
-        
+
+
     def generate(self, state: GraphState):
 
         print("---GENERATING CODE SOLUTION---")
@@ -36,15 +36,6 @@ class CodeWorkflow:
         return {"generation": code_solution, "messages": messages, "iterations": iterations}
 
     def code_check(self, state: GraphState):
-        """
-        Check code
-
-        Args:
-            state (dict): The current graph state
-
-        Returns:
-            state (dict): New key added to state, error
-        """
 
         print("---CHECKING CODE---")
 
@@ -101,15 +92,7 @@ class CodeWorkflow:
     ### Conditional edges
 
     def decide_to_finish(self, state: GraphState):
-        """
-        Determines whether to finish.
 
-        Args:
-            state (dict): The current graph state
-
-        Returns:
-            str: Next node to call
-        """
         error = state["error"]
         iterations = state["iterations"]
 
@@ -119,10 +102,10 @@ class CodeWorkflow:
         else:
             print("---DECISION: RE-TRY SOLUTION---")
             return "generate"
-        
-        
+
+    ##GRAPH CREATION
     def create_workflow(self):
-        
+
         workflow = StateGraph(GraphState)
         workflow.add_node("generate", self.generate)
         workflow.add_node("check_code", self.code_check)
